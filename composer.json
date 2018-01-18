@@ -1,5 +1,5 @@
 {
-    "name": "page-builder",
+    "name": "maikenegreiros/pagebuilder",
     "description": "Módulo para o gerenciamento de documentos html",
     "keywords": ["dom","html","template","page builder"],
     "homepage": "https://github.com/maikenegreiros/pagebuilder",
