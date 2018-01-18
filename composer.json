@@ -1,0 +1,28 @@
+{
+    "name": "page-builder",
+    "description": "Módulo para o gerenciamento de documentos html",
+    "keywords": ["dom","html","template","page builder"],
+    "homepage": "https://bitbucket.org/ciebit/dom-template",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maike Negreiros",
+            "email": "maike_jbe@hotmail.com",
+            "homepage": "http://maikenegreiros.me",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "maike_jbe@hotmail.com"
+    },
+    "autoload": {
+        "psr-4":{
+            "Template\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "phpgt/dom": "^1.0"
+    }
+}
