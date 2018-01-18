@@ -1,5 +1,5 @@
 <?php
-namespace Template;
+namespace MaikeNegreiros;
 
 use \Gt\Dom\HTMLDocument;
 
