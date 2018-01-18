@@ -2,7 +2,7 @@
     "name": "page-builder",
     "description": "Módulo para o gerenciamento de documentos html",
     "keywords": ["dom","html","template","page builder"],
-    "homepage": "https://bitbucket.org/ciebit/dom-template",
+    "homepage": "https://github.com/maikenegreiros/pagebuilder",
     "type": "library",
     "license": "MIT",
     "authors": [
