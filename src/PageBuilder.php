@@ -9,7 +9,7 @@ class PageBuilder
     private $layouts; #Array<string>
     private $tagsToImport = ".export";
     private $selectorNodeToImport = ".content";
-    private $selectorNodeWhereToImport = ".conteudo";
+    private $selectorNodeWhereToImport = ".content";
     private $templateDocument; #HTMLDocument
     private $layoutDocument; #HTMLDocument
 
