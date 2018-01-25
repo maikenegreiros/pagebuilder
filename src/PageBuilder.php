@@ -3,45 +3,23 @@ namespace MaikeNegreiros;
 
 use \Gt\Dom\HTMLDocument;
 
-class PageBuilder
+abstract class PageBuilder
 {
-    private $template = __DIR__."/../layouts/menu.html";
-    private $layouts; #Array<string>
-    private $tagsToImport = ".export";
-    private $selectorNodeToImport = ".content";
-    private $selectorNodeWhereToImport = ".content";
-    private $templateDocument; #HTMLDocument
-    private $layoutDocument; #HTMLDocument
+    protected $template = __DIR__."/../../../../layouts/menu.html";
+    protected $layouts; #Array<string>
+    protected $tagsToImport = ".export";
+    protected $selectorNodeToImport = ".content";
+    protected $selectorNodeWhereToImport = ".content";
+    protected $templateDocument; #HTMLDocument
+    protected $layoutDocument; #HTMLDocument
+    protected $output; #string
 
     public function getHtml(): string
     {
         return $this->output;
     }
 
-    public function buildHtml(): self
-    {
-        $document = $this->getTemplateDocument();
-        $container = $document->querySelector($this->selectorNodeWhereToImport);
-
-        for ($i=0; $i < count($this->layouts); $i++) {
-            $document2 = $this->getLayoutDocument($this->layouts[$i]);
-            $content = $document2->querySelector($this->selectorNodeToImport);
-            $fragment = $document->importNode($content, true);
-
-            $container->appendChild($fragment);
-        }
-
-        $this->importMetaTagsAndTitle('title');
-        $this->importMetaTagsAndTitle('[name=description]');
-        $this->importMetaTagsAndTitle('[name=keywords]');
-        $this->importStylesAndScripts();
-
-        $this->output = $document->saveHTML();
-
-        return $this;
-    }
-
-    private function importStylesAndScripts(): self
+    protected function importStylesAndScripts(): self
     {
         $document = $this->getTemplateDocument();
         $head = $document->querySelector("head");
@@ -58,7 +36,7 @@ class PageBuilder
         return $this;
     }
 
-    private function importMetaTagsAndTitle(string $selector): self
+    protected function importMetaTagsAndTitle(string $selector): self
     {
         $document = $this->getTemplateDocument();
         $head = $document->querySelector("head");
@@ -77,7 +55,7 @@ class PageBuilder
         return $this;
     }
 
-    private function getTemplateDocument(): HTMLDocument
+    protected function getTemplateDocument(): HTMLDocument
     {
         if ($this->templateDocument) {
             return $this->templateDocument;
@@ -88,9 +66,10 @@ class PageBuilder
         return $this->templateDocument;
     }
 
-    private function getLayoutDocument($content): HTMLDocument
+    protected function getLayoutDocument($path): HTMLDocument
     {
-        $this->layoutDocument = new HTMLDocument($content);
+        $html = file_get_contents($path);
+        $this->layoutDocument = new HTMLDocument($html);
 
         return $this->layoutDocument;
     }
@@ -100,16 +79,7 @@ class PageBuilder
         if (! $this->layouts) {
             $this->layouts = array();
         }
-        array_push($this->layouts, file_get_contents($path));
-        return $this;
-    }
-
-    public function setLayoutbyContent(string $content): self
-    {
-        if (! $this->layouts) {
-            $this->layouts = array();
-        }
-        array_push($this->layouts, $content);
+        array_push($this->layouts, $path);
         return $this;
     }
 
