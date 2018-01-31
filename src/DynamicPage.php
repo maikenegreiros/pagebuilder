@@ -22,6 +22,10 @@ class DynamicPage extends PageBuilder
         $document = $this->getTemplateDocument();
         $container = $document->querySelector($this->selectorNodeWhereToImport);
         $document2 = $this->View->getDocumentUpdated($this->Model);
+
+        $tagStyle =  $document->importNode($this->View->importTagStyleUpdated($this->Model), true);
+        $document->querySelector('body')->appendChild($tagStyle);
+
         $content = $document2->querySelector($this->selectorNodeToImport);
         $fragment = $document->importNode($content, true);
         $container->appendChild($fragment);
