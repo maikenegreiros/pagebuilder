@@ -66,10 +66,9 @@ abstract class PageBuilder
         return $this->templateDocument;
     }
 
-    protected function getLayoutDocument($path): HTMLDocument
+    protected function getLayoutDocument(string $content): HTMLDocument
     {
-        $html = file_get_contents($path);
-        $this->layoutDocument = new HTMLDocument($html);
+        $this->layoutDocument = new HTMLDocument($content);
 
         return $this->layoutDocument;
     }
@@ -79,7 +78,16 @@ abstract class PageBuilder
         if (! $this->layouts) {
             $this->layouts = array();
         }
-        array_push($this->layouts, $path);
+        array_push($this->layouts, file_get_contents($path));
+        return $this;
+    }
+
+    public function setLayoutbyContent(string $content): self
+    {
+        if (! $this->layouts) {
+            $this->layouts = array();
+        }
+        array_push($this->layouts, $content);
         return $this;
     }
 
