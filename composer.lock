@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd9b8714e3807d7ce30bd9241b410013",
-    "content-hash": "15978c86bfd846299c23cc0d075eac71",
+    "hash": "4b42f3643d468a409568228811e754a5",
+    "content-hash": "0d0965d22db8e5cec43537e6bd314121",
     "packages": [
         {
             "name": "phpgt/dom",

@@ -27,8 +27,12 @@ class DynamicPage extends PageBuilder
         $document->querySelector('body')->appendChild($tagStyle);
 
         $content = $document2->querySelector($this->selectorNodeToImport);
-        $fragment = $document->importNode($content, true);
-        $container->appendChild($fragment);
+
+        $childrenToImport = $document2->querySelectorAll($this->selectorNodeWhereToImport);
+        for ($i=0; $i < count($childrenToImport); $i++) {
+            $fragment = $document->importNode($childrenToImport[$i], true);
+            $container->appendChild($fragment);
+        }
 
         $this->importMetaTagsAndTitle('title');
         $this->importMetaTagsAndTitle('[name=description]');
